@@ -8,12 +8,12 @@ def stock_picker(prices)
   profit = 0
 
   prices.each_with_index do |price, idx|
-    for i in idx + 1...prices.length - 1 do
-      if prices[i] - price > profit
-        profit = prices[i] - price
-        buy = idx
-        sell = i
-      end
+    (idx + 1...prices.length - 1).each do |i|
+      next unless prices[i] - price > profit
+
+      profit = prices[i] - price
+      buy = idx
+      sell = i
     end
   end
   [buy, sell]
